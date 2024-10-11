@@ -18,27 +18,41 @@ import {age, name} from "./data.js"
 import Contents from "./contents.js"
 
 export default function Cart(){
+    let 장바구니 = ['Tomatoes', 'Pasta']
+    let card = ['현대', '롯데', '신한']
     return(
         <div>
             <Contents/>
             <h3 className="title">장바구니</h3>
-            {age} {name}
-            <CartItem/>
-            <CartItem/>
-            <CartItem/> 
+            {/* {age} {name} */}
+            <CartItem item={장바구니[0]} temp={card[0]}/>
+            <CartItem item={장바구니[1]}/>
+            <CartItem item={장바구니[2]}/> 
+            <Banner event={card[0]}/>
+            <Banner event={card[1]}/>
+            <Banner event={card[2]}/>
+            <RedBtn color="blue"/>
             <Link style={{textAlign: 'center'}} href="/cart/payment">결제</Link>
         </div>
     )
 }
 
+function Banner(props){
+    return <h5>{props.event}카드 결제 행사중</h5>
+}
+
 // 컴포넌트 component 
-function CartItem(){
+function CartItem(props){
     return (
         <div className="cart-item">
-            <p>상품명</p>
-            <p>$40</p>
+            <p>{props.item}</p>
+            <p>{props.temp}</p>
             <p>1개</p>
         </div>
     )
+}
+
+function RedBtn(props){
+    return <button style={{background: props.color, width:'100px', marginLeft: '400px'}}>버튼</button>
 }
 
